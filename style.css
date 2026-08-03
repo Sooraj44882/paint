@@ -1,0 +1,38 @@
+body { 
+  margin: 0; 
+  padding: 0; 
+  background-color: gray;
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column; 
+  height: 100vh; 
+  overflow: hidden; 
+}
+
+#toolbar {
+  background-color: #ffffff; 
+  color: #000000;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 40px;
+  z-index: 10; 
+}
+
+#toolbar h3 {
+  margin: 0;
+}
+
+
+#canvas-container {
+  flex: 1; 
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  padding: 20px;
+}
+
+canvas {
+  border-radius: 8px;
+}
