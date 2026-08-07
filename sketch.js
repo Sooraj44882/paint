@@ -3,6 +3,8 @@ let pencilBtn;
 let eraserBtn;
 let sizeDropdown;
 let colorPicker;
+let clearBtn;
+let saveBtn;
 
 function setup() {
   let canvas = createCanvas(800, 600);
@@ -13,8 +15,17 @@ function setup() {
   pencilBtn = document.getElementById('pencilBtn');
   eraserBtn = document.getElementById('eraserBtn');
   sizeDropdown = document.getElementById('sizeDropdown');
-  
   colorPicker = document.getElementById('colorPicker');
+  clearBtn = document.getElementById("clearBtn");
+  saveBtn = document.getElementById("saveBtn")
+
+  saveBtn.addEventListener('click',function(){
+    saveCanvas("mypaint",'png');
+  })
+
+  clearBtn.addEventListener('click',function(){
+    background(255);
+  })
 
   pencilBtn.addEventListener('click', function() {
     currentTool = 'pencil';
