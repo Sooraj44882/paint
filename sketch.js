@@ -1,6 +1,8 @@
 let currentTool = 'pencil';
 let pencilBtn;
 let eraserBtn;
+let sizeDropdown;
+let colorPicker;
 
 function setup() {
   let canvas = createCanvas(800, 600);
@@ -10,6 +12,9 @@ function setup() {
 
   pencilBtn = document.getElementById('pencilBtn');
   eraserBtn = document.getElementById('eraserBtn');
+  sizeDropdown = document.getElementById('sizeDropdown');
+  
+  colorPicker = document.getElementById('colorPicker');
 
   pencilBtn.addEventListener('click', function() {
     currentTool = 'pencil';
@@ -27,12 +32,13 @@ function setup() {
 function draw() {
   if (mouseIsPressed === true) {
     
-    strokeWeight(4);
+    let brushSize = sizeDropdown.value;
+    strokeWeight(brushSize);
     
     if (currentTool === 'pencil') {
-      stroke(0);
+      stroke(colorPicker.value); 
     } else if (currentTool === 'eraser') {
-      stroke(255);
+      stroke(255); 
     }
     
     line(pmouseX, pmouseY, mouseX, mouseY);
