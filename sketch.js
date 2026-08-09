@@ -1,8 +1,9 @@
 let currentTool = 'pencil';
-let pencilBtn ,eraserBtn ,sizeDropdown ,colorPicker ,undoBtn ,redoBtn;
+let pencilBtn ,eraserBtn ,bucketBtn, sizeDropdown ,shapeDropdown, colorPicker ,undoBtn ,redoBtn;
 let clearBtn ,saveBtn;
 
 let isDrawing=false;
+let startX, startY; 
 
 let undoStack=[];
 let redoStack=[];
@@ -19,6 +20,7 @@ function setup() {
   bucketBtn = document.getElementById('bucketBtn'); 
   
   sizeDropdown = document.getElementById('sizeDropdown');
+  shapeDropdown = document.getElementById('shapeDropdown'); 
   colorPicker = document.getElementById('colorPicker');
   clearBtn = document.getElementById("clearBtn");
   saveBtn = document.getElementById("saveBtn");
@@ -61,6 +63,7 @@ function setup() {
     pencilBtn.classList.add('active');
     eraserBtn.classList.remove('active');
     bucketBtn.classList.remove('active');
+    shapeDropdown.classList.remove('active');
   });
 
   eraserBtn.addEventListener('click', function() {
@@ -68,6 +71,7 @@ function setup() {
     eraserBtn.classList.add('active');
     pencilBtn.classList.remove('active');
     bucketBtn.classList.remove('active');
+    shapeDropdown.classList.remove('active'); 
   });
 
   bucketBtn.addEventListener('click', function() {
@@ -75,6 +79,23 @@ function setup() {
     bucketBtn.classList.add('active');
     pencilBtn.classList.remove('active');
     eraserBtn.classList.remove('active');
+    shapeDropdown.classList.remove('active'); 
+  });
+
+  shapeDropdown.addEventListener('click', function() {
+    currentTool = 'shape';
+    shapeDropdown.classList.add('active');
+    pencilBtn.classList.remove('active');
+    eraserBtn.classList.remove('active');
+    bucketBtn.classList.remove('active');
+  });
+  
+  shapeDropdown.addEventListener('change', function() {
+    currentTool = 'shape';
+    shapeDropdown.classList.add('active');
+    pencilBtn.classList.remove('active');
+    eraserBtn.classList.remove('active');
+    bucketBtn.classList.remove('active');
   });
 }
 
@@ -85,27 +106,58 @@ function mousePressed() {
       floodFill(Math.floor(mouseX), Math.floor(mouseY), colorPicker.value);
       saveState(); 
     } else {
-    isDrawing = true;
+      isDrawing = true;
+      startX = mouseX;
+      startY = mouseY;
     }
   }
 }
 
 function draw() {
-    
-  if (isDrawing === true && (currentTool === 'pencil' || currentTool === 'eraser')) {
+  if (isDrawing === true) {
     let brushSize = sizeDropdown.value;
     strokeWeight(brushSize);
     
+  if (currentTool === 'pencil' || currentTool === 'eraser') {
     if (currentTool === 'pencil') {
       stroke(colorPicker.value); 
     } else if (currentTool === 'eraser') {
       stroke(255); 
     }
-    
+
     line(pmouseX, pmouseY, mouseX, mouseY);
+    }
+    
+    else if (currentTool === 'shape') {
+      let previousState = undoStack[undoStack.length - 1];
+      image(previousState, 0, 0);
+      
+      stroke(colorPicker.value);
+      noFill(); 
+      
+      let w = mouseX - startX;
+      let h = mouseY - startY;
+      let shapeType = shapeDropdown.value;
+
+      if (shapeType === 'rect') {
+        rect(startX, startY, w, h);
+      } 
+      else if (shapeType === 'circle') {
+        ellipseMode(CORNERS);
+        ellipse(startX, startY, mouseX, mouseY);
+      } 
+      else if (shapeType === 'square') {
+        let side = Math.max(Math.abs(w), Math.abs(h));
+        let sqW = w < 0 ? -side : side;
+        let sqH = h < 0 ? -side : side;
+        rect(startX, startY, sqW, sqH);
+      } 
+      else if (shapeType === 'triangle') {
+        triangle(startX + w / 2, startY, mouseX, mouseY, startX, mouseY);
+      }
+    }
   }
 }
-
 
 function mouseReleased(){
   if (isDrawing=== true) {
