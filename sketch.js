@@ -1,7 +1,7 @@
 let currentTool = 'pencil';
 let pencilBtn ,eraserBtn ,bucketBtn, sizeDropdown ,shapeDropdown, colorPicker ,undoBtn ,redoBtn;
 let clearBtn ,saveBtn;
-let symmetryBtn;
+let symmetryBtn,sprayBtn;
 
 let isDrawing=false;
 let startX, startY; 
@@ -19,6 +19,7 @@ function setup() {
   pencilBtn = document.getElementById('pencilBtn');
   eraserBtn = document.getElementById('eraserBtn');
   bucketBtn = document.getElementById('bucketBtn'); 
+  sprayBtn = document.getElementById('sprayBtn');
   
   sizeDropdown = document.getElementById('sizeDropdown');
   shapeDropdown = document.getElementById('shapeDropdown'); 
@@ -68,6 +69,7 @@ function setup() {
     bucketBtn.classList.remove('active');
     shapeDropdown.classList.remove('active');
     symmetryBtn.classList.remove('active');
+    sprayBtn.classList.remove('active');
   });
 
   eraserBtn.addEventListener('click', function() {
@@ -77,6 +79,7 @@ function setup() {
     bucketBtn.classList.remove('active');
     shapeDropdown.classList.remove('active');
     symmetryBtn.classList.remove('active'); 
+    sprayBtn.classList.remove('active');
   });
 
   bucketBtn.addEventListener('click', function() {
@@ -86,6 +89,7 @@ function setup() {
     eraserBtn.classList.remove('active');
     shapeDropdown.classList.remove('active');
     symmetryBtn.classList.remove('active'); 
+    sprayBtn.classList.remove('active');
   });
 
   shapeDropdown.addEventListener('click', function() {
@@ -95,6 +99,7 @@ function setup() {
     eraserBtn.classList.remove('active');
     bucketBtn.classList.remove('active');
     symmetryBtn.classList.remove('active');
+    sprayBtn.classList.remove('active');
   });
   
   shapeDropdown.addEventListener('change', function() {
@@ -104,16 +109,32 @@ function setup() {
     eraserBtn.classList.remove('active');
     bucketBtn.classList.remove('active');
     symmetryBtn.classList.remove('active');
+    sprayBtn.classList.remove('active');
   });
 
-  symmetryBtn.addEventListener('click',function(){
+
+
+symmetryBtn.addEventListener('click',function(){
   currentTool="symmetry";
   symmetryBtn.classList.add('active');
   pencilBtn.classList.remove('active');
   eraserBtn.classList.remove('active');
   bucketBtn.classList.remove('active');
   shapeDropdown.classList.remove('active');
+  sprayBtn.classList.remove('active');
 });
+
+sprayBtn.addEventListener('click',function(){
+  currentTool="spray";
+  sprayBtn.classList.add('active');
+  pencilBtn.classList.remove('active');
+  eraserBtn.classList.remove('active');
+  bucketBtn.classList.remove('active');
+  shapeDropdown.classList.remove('active');
+  symmetryBtn.classList.remove('active');
+})
+
+
 }
 
 
@@ -147,6 +168,20 @@ function draw() {
     line(pmouseX, pmouseY, mouseX, mouseY);
     }
 
+    else if(currentTool==='spray'){
+      stroke(colorPicker.value);
+      strokeWeight(1);
+      let spreadRadius = brushSize * 2;
+      let dotDensity = brushSize * 4;
+
+      for(let i=0;i<dotDensity;i++){
+        let angle = random(spreadRadius);
+        let radius = random(spreadRadius);
+        let dotX = mouseX + cos(angle) * radius;
+        let dotY = mouseY + sin(angle) * radius;
+        point(dotX,dotY);
+      }
+    }
     else if(currentTool==='symmetry'){
       stroke(colorPicker.value);
 
