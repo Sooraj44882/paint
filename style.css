@@ -43,9 +43,16 @@ button, select, input[type="color"] {
   background-color: white;
   height: 32px;
   border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.material-symbols-outlined {
+  font-size: 18px;
 }
 
 .active {
-  background-color: black;
+  background-color: rgb(169, 168, 168);
   color: white;
 }

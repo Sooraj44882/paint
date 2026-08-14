@@ -6,6 +6,8 @@
     <title>Paint</title>
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/addons/p5.sound.min.js"></script>
 </head>
@@ -13,27 +15,39 @@
 
     <div id="toolbar">
         <h3>Color App</h3>
-        <button id="pencilBtn" class="active">Pencil</button>
-        <button id="eraserBtn">Eraser</button>
-        <button id="bucketBtn">Bucket</button>
+        <button id="pencilBtn" class="active">
+            <span class="material-symbols-outlined">edit</span> Pencil
+        </button>
+        <button id="eraserBtn">
+            <span class="material-symbols-outlined">ink_eraser</span> Eraser
+        </button>
+        <button id="bucketBtn">
+            <span class="material-symbols-outlined">format_color_fill</span> Bucket
+        </button>
 
-        <button id="symmetryBtn">Symmetry Pen</button>
-        <button id="sprayBtn">Spray </button>
-        <button id="audioBtn">Audio</button>
+        <button id="symmetryBtn">
+            <span class="material-symbols-outlined">flip</span>
+            Symmetry Pen</button>
+        <button id="sprayBtn">
+            <span class="material-symbols-outlined">blur_on</span>
+            Spray </button>
+        <button id="audioBtn">
+            <span class="material-symbols-outlined">mic</span>
+            Audio</button>
         
         <select id="shapeDropdown">
-            <option value="rect">Rectangle</option>
-            <option value="circle">Circle</option>
-            <option value="square">Square</option>
-            <option value="triangle">Triangle</option>
+            <option value="rect">▬ Rectangle</option>
+            <option value="circle">⬤ Circle</option>
+            <option value="square">■ Square</option>
+            <option value="triangle">▲ Triangle</option>
         </select>
         
         <input type="color" id="colorPicker" value="#000000">
         
         <select id="sizeDropdown">
-            <option value="2">Thin</option>
-            <option value="6" selected>Normal</option>
-            <option value="15">Thick</option>
+            <option value="2">⏤ Thin</option>
+            <option value="6" selected>━ Normal</option>
+            <option value="15">▬ Thick</option>
         </select>
 
         <button id="undoBtn">Undo</button>
