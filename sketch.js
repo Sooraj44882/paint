@@ -1,7 +1,7 @@
 let currentTool = 'pencil';
-let pencilBtn ,eraserBtn ,bucketBtn, sizeDropdown ,shapeDropdown, colorPicker ,undoBtn ,redoBtn;
+let pencilBtn ,eraserBtn ,bucketBtn, symmetryBtn, sprayBtn, audioBtn, sizeDropdown ,shapeDropdown, colorPicker ,undoBtn ,redoBtn;
 let clearBtn ,saveBtn;
-let symmetryBtn,sprayBtn;
+let mic; 
 
 let isDrawing=false;
 let startX, startY; 
@@ -18,9 +18,13 @@ function setup() {
 
 setupUI();
 saveState();
+
+  mic = new p5.AudioIn();
+  mic.start();
 }
 
 function mousePressed() {
+  userStartAudio();
   if (mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height) {
     
     if (currentTool === 'bucket') {
@@ -48,6 +52,16 @@ function draw() {
 
     line(pmouseX, pmouseY, mouseX, mouseY);
     }
+  
+    else if (currentTool === 'audio') {
+      let vol = mic.getLevel(); 
+
+      let audioThickness = map(vol, 0, 0.3, 2, 80);
+      
+      stroke(colorPicker.value);
+      strokeWeight(audioThickness);
+    line(pmouseX, pmouseY, mouseX, mouseY);
+    }
 
     else if(currentTool==='spray'){
       stroke(colorPicker.value);
@@ -56,7 +70,7 @@ function draw() {
       let dotDensity = brushSize * 4;
 
       for(let i=0;i<dotDensity;i++){
-        let angle = random(spreadRadius);
+        let angle = random(TWO_PI);
         let radius = random(spreadRadius);
         let dotX = mouseX + cos(angle) * radius;
         let dotY = mouseY + sin(angle) * radius;

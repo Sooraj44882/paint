@@ -14,9 +14,7 @@ function setupUI() {
 
   symmetryBtn =document.getElementById('symmetryBtn');
   sprayBtn = document.getElementById('sprayBtn');
-
-  
-  saveState();
+  audioBtn = document.getElementById('audioBtn');
 
   undoBtn.addEventListener('click',function(){
     if(undoStack.length>1){
@@ -54,6 +52,7 @@ function setupUI() {
     shapeDropdown.classList.remove('active');
     symmetryBtn.classList.remove('active');
     sprayBtn.classList.remove('active');
+    audioBtn.classList.remove('active');
   });
 
   eraserBtn.addEventListener('click', function() {
@@ -64,6 +63,7 @@ function setupUI() {
     shapeDropdown.classList.remove('active');
     symmetryBtn.classList.remove('active'); 
     sprayBtn.classList.remove('active');
+    audioBtn.classList.remove('active');
   });
 
   bucketBtn.addEventListener('click', function() {
@@ -74,6 +74,7 @@ function setupUI() {
     shapeDropdown.classList.remove('active');
     symmetryBtn.classList.remove('active'); 
     sprayBtn.classList.remove('active');
+    audioBtn.classList.remove('active');
   });
 
   shapeDropdown.addEventListener('click', function() {
@@ -84,6 +85,7 @@ function setupUI() {
     bucketBtn.classList.remove('active');
     symmetryBtn.classList.remove('active');
     sprayBtn.classList.remove('active');
+    audioBtn.classList.remove('active');
   });
   
   shapeDropdown.addEventListener('change', function() {
@@ -94,29 +96,41 @@ function setupUI() {
     bucketBtn.classList.remove('active');
     symmetryBtn.classList.remove('active');
     sprayBtn.classList.remove('active');
+    audioBtn.classList.remove('active');
   });
 
 
 
 symmetryBtn.addEventListener('click',function(){
-  currentTool="symmetry";
+  currentTool='symmetry';
   symmetryBtn.classList.add('active');
   pencilBtn.classList.remove('active');
   eraserBtn.classList.remove('active');
   bucketBtn.classList.remove('active');
   shapeDropdown.classList.remove('active');
   sprayBtn.classList.remove('active');
+  audioBtn.classList.remove('active');
 });
 
 sprayBtn.addEventListener('click',function(){
-  currentTool="spray";
+  currentTool = 'spray';
   sprayBtn.classList.add('active');
   pencilBtn.classList.remove('active');
   eraserBtn.classList.remove('active');
   bucketBtn.classList.remove('active');
   shapeDropdown.classList.remove('active');
   symmetryBtn.classList.remove('active');
-})
+  audioBtn.classList.remove('active');
+});
 
-
+audioBtn.addEventListener('click', function() {
+  currentTool = 'audio';
+  audioBtn.classList.add('active');
+  pencilBtn.classList.remove('active');
+  eraserBtn.classList.remove('active');
+  bucketBtn.classList.remove('active');
+  symmetryBtn.classList.remove('active');
+  sprayBtn.classList.remove('active');
+  shapeDropdown.classList.remove('active'); 
+});
 }
