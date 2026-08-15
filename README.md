@@ -1,4 +1,7 @@
 # Colors-Web Paint App
+![alt text](asset/1.png)
+
+## Live demo: https://sooraj44882.github.io/paint/
 
 ## How to Run Locally
 1. Clone or download this repository.
@@ -14,7 +17,9 @@
 * **Symmetry Tool:** Draw mirrored designs
 * **Spray Paint:** Add textured shading to your artwork
 * **Shapes:** Draw geometric shapes like circle,triangle,square,rectangle
-* **Audio Brush:** A unique tool that reacts to microphone input to change your brush size(please check first if you given permission )
+##
+![alt text](asset/2.png)
+* **Audio Brush:** A unique tool that reacts to microphone input to change your brush size(please check first if you given permission and if it not works refresh page after permission)
 
 ##
 
