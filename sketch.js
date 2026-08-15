@@ -24,6 +24,11 @@ saveState();
 }
 
 function mousePressed() {
+
+  if(event && event.target.tagName !=='CANVAS'){
+    return;
+  }
+
   userStartAudio();
   if (mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height) {
     
