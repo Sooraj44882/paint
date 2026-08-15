@@ -21,7 +21,7 @@ function setupUI() {
     if (!cvs) return;
 
     if (tool === 'pencil') {
-      cvs.style.cursor = 'url("asset/pen.svg") 0 24, auto';
+      cvs.style.cursor = 'url("asset/pen.svg") 8 24, auto';
     } 
     else if (tool === 'eraser') {
       cvs.style.cursor = 'url("asset/eraser.svg") 12 12, auto';
