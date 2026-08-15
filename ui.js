@@ -80,7 +80,7 @@ function setupUI() {
     saveState();
   });
 
-  pencilBtn.addEventListener('click', function() {
+  pencilBtn.addEventListener('click , ', function() {
      switchTool('pencil', pencilBtn); });
 
   eraserBtn.addEventListener('click', function() {
@@ -100,4 +100,47 @@ function setupUI() {
     switchTool('spray', sprayBtn); });
   audioBtn.addEventListener('click', function() {
      switchTool('audio', audioBtn); });
-    }
+
+
+
+     document.addEventListener('keydown',(event)=>{
+
+      let secKey=event.key.toLocaleLowerCase();
+
+      if(event.ctrlKey && event.shiftKey && secKey==='z'){
+        event.preventDefault();
+        redoBtn.click();
+      }
+       else if(event.ctrlKey && secKey==='z'){
+        event.preventDefault();
+        undoBtn.click();
+      }
+      
+      else if(event.ctrlKey && secKey==='s'){
+        event.preventDefault();
+        saveBtn.click();
+      }
+      else if(event.ctrlKey && secKey==='p'){
+        event.preventDefault();
+        pencilBtn.click();
+      }
+      else if(event.ctrlKey && secKey==='e'){
+        event.preventDefault();
+        eraserBtn.click();
+      }
+      else if(event.ctrlKey && secKey==='b'){
+        event.preventDefault();
+        bucketBtn.click();
+      }
+  
+      else if(event.ctrlKey && secKey==='a'){
+        event.preventDefault();
+        audioBtn.click();
+      }
+     
+     });
+    
+
+}
+
+
