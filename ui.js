@@ -80,7 +80,7 @@ function setupUI() {
     saveState();
   });
 
-  pencilBtn.addEventListener('click , ', function() {
+  pencilBtn.addEventListener('click', function() {
      switchTool('pencil', pencilBtn); });
 
   eraserBtn.addEventListener('click', function() {
