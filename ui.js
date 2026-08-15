@@ -16,6 +16,42 @@ function setupUI() {
   sprayBtn = document.getElementById('sprayBtn');
   audioBtn = document.getElementById('audioBtn');
 
+  function updateCursor(tool) {
+    let cvs = document.querySelector('canvas');
+    if (!cvs) return;
+
+    if (tool === 'pencil') {
+      cvs.style.cursor = 'url("asset/pen.svg") 0 24, auto';
+    } 
+    else if (tool === 'eraser') {
+      cvs.style.cursor = 'url("asset/eraser.svg") 12 12, auto';
+    } 
+    else if (tool === 'bucket') {
+      cvs.style.cursor = 'url("asset/colors.svg") 0 24, auto';
+    } 
+    else {
+      cvs.style.cursor = 'crosshair';
+    }
+  }
+
+  function switchTool(toolName, clickedElement) {
+    currentTool = toolName;       
+    updateCursor(toolName);
+
+    pencilBtn.classList.remove('active');
+    eraserBtn.classList.remove('active');
+    bucketBtn.classList.remove('active');
+    symmetryBtn.classList.remove('active');
+    sprayBtn.classList.remove('active');
+    audioBtn.classList.remove('active');
+    shapeDropdown.classList.remove('active');
+
+    clickedElement.classList.add('active');
+  }
+
+  updateCursor('pencil');
+
+
   undoBtn.addEventListener('click',function(){
     if(undoStack.length>1){
       let currentState= undoStack.pop();
@@ -45,92 +81,23 @@ function setupUI() {
   });
 
   pencilBtn.addEventListener('click', function() {
-    currentTool = 'pencil';
-    pencilBtn.classList.add('active');
-    eraserBtn.classList.remove('active');
-    bucketBtn.classList.remove('active');
-    shapeDropdown.classList.remove('active');
-    symmetryBtn.classList.remove('active');
-    sprayBtn.classList.remove('active');
-    audioBtn.classList.remove('active');
-  });
+     switchTool('pencil', pencilBtn); });
 
   eraserBtn.addEventListener('click', function() {
-    currentTool = 'eraser';
-    eraserBtn.classList.add('active');
-    pencilBtn.classList.remove('active');
-    bucketBtn.classList.remove('active');
-    shapeDropdown.classList.remove('active');
-    symmetryBtn.classList.remove('active'); 
-    sprayBtn.classList.remove('active');
-    audioBtn.classList.remove('active');
-  });
+     switchTool('eraser', eraserBtn); });
 
   bucketBtn.addEventListener('click', function() {
-    currentTool = 'bucket';
-    bucketBtn.classList.add('active');
-    pencilBtn.classList.remove('active');
-    eraserBtn.classList.remove('active');
-    shapeDropdown.classList.remove('active');
-    symmetryBtn.classList.remove('active'); 
-    sprayBtn.classList.remove('active');
-    audioBtn.classList.remove('active');
-  });
+     switchTool('bucket', bucketBtn); });
 
   shapeDropdown.addEventListener('click', function() {
-    currentTool = 'shape';
-    shapeDropdown.classList.add('active');
-    pencilBtn.classList.remove('active');
-    eraserBtn.classList.remove('active');
-    bucketBtn.classList.remove('active');
-    symmetryBtn.classList.remove('active');
-    sprayBtn.classList.remove('active');
-    audioBtn.classList.remove('active');
-  });
-  
-  shapeDropdown.addEventListener('change', function() {
-    currentTool = 'shape';
-    shapeDropdown.classList.add('active');
-    pencilBtn.classList.remove('active');
-    eraserBtn.classList.remove('active');
-    bucketBtn.classList.remove('active');
-    symmetryBtn.classList.remove('active');
-    sprayBtn.classList.remove('active');
-    audioBtn.classList.remove('active');
-  });
+     switchTool('shape', shapeDropdown); });
+
+  symmetryBtn.addEventListener('click', function() {
+     switchTool('symmetry', symmetryBtn); });
 
 
-
-symmetryBtn.addEventListener('click',function(){
-  currentTool='symmetry';
-  symmetryBtn.classList.add('active');
-  pencilBtn.classList.remove('active');
-  eraserBtn.classList.remove('active');
-  bucketBtn.classList.remove('active');
-  shapeDropdown.classList.remove('active');
-  sprayBtn.classList.remove('active');
-  audioBtn.classList.remove('active');
-});
-
-sprayBtn.addEventListener('click',function(){
-  currentTool = 'spray';
-  sprayBtn.classList.add('active');
-  pencilBtn.classList.remove('active');
-  eraserBtn.classList.remove('active');
-  bucketBtn.classList.remove('active');
-  shapeDropdown.classList.remove('active');
-  symmetryBtn.classList.remove('active');
-  audioBtn.classList.remove('active');
-});
-
-audioBtn.addEventListener('click', function() {
-  currentTool = 'audio';
-  audioBtn.classList.add('active');
-  pencilBtn.classList.remove('active');
-  eraserBtn.classList.remove('active');
-  bucketBtn.classList.remove('active');
-  symmetryBtn.classList.remove('active');
-  sprayBtn.classList.remove('active');
-  shapeDropdown.classList.remove('active'); 
-});
-}
+  sprayBtn.addEventListener('click', function() { 
+    switchTool('spray', sprayBtn); });
+  audioBtn.addEventListener('click', function() {
+     switchTool('audio', audioBtn); });
+    }
