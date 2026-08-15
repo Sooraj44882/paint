@@ -43,22 +43,6 @@ input[type="color"] {
   width: 45px;
 }
 
-
-
-#canvas-container {
-  flex: 1; 
-  display: flex;
-  justify-content: center; 
-  align-items: center; 
-  padding: 20px;
-  overflow: auto; 
-}
-
-canvas {
-  background-color: white;
-  border-radius: 8px;
-}
-
 button, select, input[type="color"] {
   box-sizing: border-box;
   padding: 8px 12px;
@@ -78,6 +62,10 @@ button, select, input[type="color"] {
   font-size: 18px;
 }
 
+button span {
+  pointer-events: none;
+}
+
 .active {
   background-color: #222;
   color: white;
@@ -86,4 +74,41 @@ button, select, input[type="color"] {
 
 .active:hover {
   background-color: #000;
+}
+
+#canvas-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#canvas-container canvas {
+  max-width: 100%; 
+  height: auto; 
+  
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3); 
+  
+  touch-action: none; 
+}
+
+@media (max-width: 768px) {
+  #toolbar {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none; 
+  }
+  
+  #toolbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  button, select, input[type="color"] {
+    flex-shrink: 0; 
+    padding: 10px 15px; 
+  }
 }

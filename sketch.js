@@ -156,3 +156,9 @@ function saveState(){
     undoStack.shift(); 
   }
 }
+
+function touchMoved() {
+  if (mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height) {
+    return false; 
+  }
+}
